@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
+  // 测试
   document.getElementById('root') as HTMLElement
 );
 root.render(
