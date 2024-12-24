@@ -5,7 +5,7 @@ function App() {
     <div className="App">
       <Button size={ButtonSize.Large} btnType={ButtonType.Danger}>hello</Button>
       <Button btnType={ButtonType.link}>hello</Button>
-      <Button disabled>hello</Button>
+      <Button>hello</Button>
     </div>
   );
 }

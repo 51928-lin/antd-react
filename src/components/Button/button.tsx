@@ -8,7 +8,7 @@ export const enum ButtonSize {
 
 export const enum ButtonType {
     Primary = "primary",
-    Default = "defalut",
+    Default = "default",
     Danger = 'danger',
     link = 'link'
 }
@@ -28,11 +28,11 @@ interface ButtonBaseProps  {
 // 且 => NativeButtonProps既要有ButtonBaseProps属性，也要有React.ButtonHTMLAttributes<HTMLElement>
 type NativeButtonProps = ButtonBaseProps & React.ButtonHTMLAttributes<HTMLElement>
 type AnchorButtonProps = ButtonBaseProps & React.AnchorHTMLAttributes<HTMLElement>
-type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
+export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
 
 // 当使用该组件时，传入的props会被ButtonProps接受
 const Button: React.FC<ButtonProps> = (props) => {
-    const {btnType, size, disabled, children, url,className,  ...restProps} = props;
+    const {btnType = ButtonType.Default, size, disabled = false, children, url,className,  ...restProps} = props;
     // btnType, size, disabled这三个要转换到样式，体现在classname上，所有button需要一个.btn基类
     // 对于类型，尺寸，转换成.btn-lg, .btn-dange类，防止与其他组件样式冲突
     const classes = classnames('btn', {
@@ -49,12 +49,6 @@ const Button: React.FC<ButtonProps> = (props) => {
     }else{
         return <button {...restProps} className={classes} disabled={disabled}>{children}</button>
     }
-}
-
-// .btn 包括了默认大小
-Button.defaultProps = {
-    disabled: false,
-    btnType: ButtonType.Default
 }
 
 export default Button
