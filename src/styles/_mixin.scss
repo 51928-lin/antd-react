@@ -34,3 +34,10 @@
   }
 }
 
+
+// antd中alert，背景颜色变化，边框变化(使用较浅背景颜色)，文字颜色不变
+@mixin alert-style($background, $border, $color) {
+  color: $color;
+  background: $background;
+  border-color: $border;
+}

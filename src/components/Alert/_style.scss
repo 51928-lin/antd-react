@@ -1,0 +1,44 @@
+
+.viking-alert {
+    position: relative;
+    padding: $alert-padding-y $alert-padding-x;
+    margin-bottom: $alert-margin-bottom;
+    border: $alert-border-width solid transparent;
+    border-radius: $alert-border-radius;
+    .viking-alert-close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: $alert-padding-y $alert-padding-x;
+      color: inherit;
+      cursor: pointer;
+    }
+    .bold-title {
+      font-weight: $font-weight-bold;
+    }
+    .viking-alert-desc {
+      font-size: $alert-description-font-size;
+      margin: $alert-description-top-margin 0 0;
+    }
+  }
+
+// 通过$alert-colors定义的变量是个字典对象，通过map-get( $alert-colors, default )获取对应的值
+  $alert-colors: 
+(
+  "default":    $primary,
+  "success":    $success,
+  "warning":    $warning,
+  "danger":     $danger,
+);
+
+// for key in obj
+// #{$color}是插值语法
+@each $color, $value in $alert-colors{
+    // $color => default / success/ warning/danger
+    // $value => $primary / $success / $warning / $danger
+    // 对于不同的type类型，需要覆盖默认的.viking-alert
+    // .viking-alert-default、.viking-alert-success、.viking-alert-warning、.viking-alert-danger
+    .viking-alert-#{$color} {
+        @include alert-style($value, darken($value, 5%), $white)
+    }
+}
